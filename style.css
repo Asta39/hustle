@@ -1,0 +1,626 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap');
+
+:root {
+    --primary-dark: #3A3A3C;
+    --primary-light: #F2F2F2;
+    --accent-green: #00A86B;
+    --accent-yellow: #FFD100;
+    --text-color: var(--primary-dark);
+    --background-color: var(--primary-light);
+    --header-bg: var(--primary-dark);
+    --header-text: var(--primary-light);
+    --footer-bg: var(--primary-dark);
+    --footer-text: var(--primary-light);
+    --button-bg: var(--accent-green);
+    --button-text: var(--primary-light);
+    --button-hover-bg: #008754; /* Darker green for hover */
+    --card-bg: #FFFFFF;
+    --link-color: var(--accent-green);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--header-text);
+    margin: 0;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: var(--header-text);
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: var(--accent-yellow);
+    text-decoration: none;
+}
+
+main {
+    flex-grow: 1; /* Ensures main content takes available space */
+    padding: 2rem; /* General padding for content areas */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center content */
+}
+
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 1.5rem 2rem;
+}
+
+footer a {
+    color: var(--accent-yellow);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--button-hover-bg);
+    text-decoration: none;
+    color: var(--primary-light);
+}
+
+.btn-secondary {
+    background-color: var(--accent-yellow);
+    color: var(--primary-dark);
+}
+
+.btn-secondary:hover {
+    background-color: #e6b800; /* Darker yellow */
+}
+
+@media (max-width: 768px) {
+    header nav ul {
+        display: none; /* Will be toggled by JS */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-dark); /* Or a slightly different shade */
+    }
+    header nav ul.active { /* Class to show the nav */
+        display: flex;
+    }
+    header nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #4a4a4c; /* Separator for mobile nav items */
+    }
+    header nav ul li:last-child {
+        border-bottom: none;
+    }
+    /* Style for .nav-toggle button will be added when HTML element is created */
+}
+
+/* Hero Section Styles */
+.hero {
+    background-image: url('assets/nairobi-campus.jpg'); /* Placeholder */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: var(--primary-light); /* Text color on dark background */
+    padding: 6rem 2rem; /* Generous padding */
+    text-align: center;
+    position: relative; /* For overlay */
+    min-height: 70vh; /* Make it tall */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before { /* Overlay for better text readability */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+}
+
+.hero-content {
+    position: relative; /* To sit on top of the overlay */
+    z-index: 1;
+    max-width: 800px; /* Limit width of content */
+}
+
+.hero h1 {
+    font-size: 3.5rem; /* Larger for hero */
+    color: var(--primary-light); /* White text for hero heading */
+    margin-bottom: 0.5em;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+    color: var(--primary-light); /* White text for hero paragraph */
+}
+
+.hero-cta .btn {
+    margin: 0.5rem;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+}
+
+.hero-cta .btn-secondary {
+    background-color: var(--accent-yellow);
+    color: var(--primary-dark);
+}
+
+.hero-cta .btn-secondary:hover {
+    background-color: #e6b800; /* Darker yellow */
+}
+
+/* Responsive adjustments for hero */
+@media (max-width: 768px) {
+    .hero {
+        padding: 4rem 1rem;
+        min-height: 60vh;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .hero-cta .btn {
+        display: block; /* Stack buttons on mobile */
+        margin: 0.5rem auto; /* Center them */
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+/* Featured Guides Section Styles */
+.featured-guides {
+    padding: 4rem 0;
+    background-color: #ffffff; /* White background */
+}
+
+.featured-guides .section-title {
+    color: var(--primary-dark);
+    margin-bottom: 3rem;
+}
+
+.guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.guide-card {
+    background-color: var(--primary-light); /* Light background for cards */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures image corners are rounded if image is direct child */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.guide-card-image {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover;
+}
+
+.guide-card-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Allows content to take up space and push button down */
+    display: flex;
+    flex-direction: column;
+}
+
+.guide-card-content h3 {
+    font-size: 1.4rem;
+    color: var(--accent-green);
+    margin-bottom: 0.75rem;
+}
+
+.guide-card-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Pushes button to the bottom */
+}
+
+.btn-small { /* A smaller button variant if needed */
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    align-self: flex-start; /* Align button to the left */
+}
+
+/* Responsive adjustments for featured guides */
+@media (max-width: 768px) {
+    .featured-guides {
+        padding: 3rem 0;
+    }
+    .guides-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .guide-card-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Testimonials Section Styles */
+.testimonials {
+    padding: 4rem 0;
+    background-color: var(--primary-light); /* Light background */
+}
+
+.testimonials .section-title {
+    color: var(--primary-dark);
+    margin-bottom: 3rem;
+}
+
+.testimonials-slider {
+    position: relative; /* For positioning nav buttons */
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden; /* Basic setup for slider, actual sliding via JS */
+}
+
+.testimonial-item {
+    background-color: #ffffff; /* White cards for testimonials */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    margin-bottom: 1.5rem; /* Stack them for now, JS will handle display */
+    /* display: none; */ /* Initially hide all, JS will show active */
+}
+
+/* .testimonial-item.active { */
+    /* display: block; */ /* JS will toggle this class */
+/* } */
+
+.testimonial-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem auto;
+    border: 3px solid var(--accent-green);
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-green);
+}
+
+/* Slider Navigation Buttons (Basic Styling) */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    border: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.slider-btn:hover {
+    opacity: 1;
+    background-color: var(--accent-green);
+}
+
+.prev-btn {
+    left: -10px; /* Adjust as needed */
+}
+
+.next-btn {
+    right: -10px; /* Adjust as needed */
+}
+
+/* Initially, we'll show all testimonials stacked.
+   JS will be used to show only one at a time for the slider.
+   If we wanted to hide non-active ones by default with CSS:
+*/
+.testimonial-item:not(:first-child) {
+     /* display: none; */ /* Uncomment this if you want only the first one visible before JS */
+}
+
+
+/* Responsive adjustments for testimonials */
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 3rem 0;
+    }
+    .testimonial-item {
+        padding: 1.5rem;
+    }
+    .testimonial-text {
+        font-size: 1rem;
+    }
+    .slider-btn { /* Make buttons smaller and adjust position for mobile */
+        font-size: 1.2rem;
+        padding: 0.6rem 0.8rem;
+    }
+    .prev-btn {
+        left: 5px;
+    }
+    .next-btn {
+        right: 5px;
+    }
+}
+@media (max-width: 480px) {
+    .testimonials-slider{
+        /* On very small screens, ensure buttons don't overlap content too much if content is narrow */
+        padding-left:30px;
+        padding-right:30px;
+    }
+     .prev-btn {
+        left: -5px;
+    }
+    .next-btn {
+        right: -5px;
+    }
+}
+
+/* Hustle Directory Page Styles */
+.page-title { /* General page title styling */
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    text-align: center; /* Or left, depending on design */
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--primary-dark); /* Softer than title */
+    margin-bottom: 2rem;
+    text-align: center; /* Or left */
+}
+
+.hustle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem; /* Space after filters */
+}
+
+.hustle-card {
+    background-color: var(--card-bg, #ffffff); /* Use variable or default white */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hustle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hustle-card-image {
+    width: 100%;
+    height: 180px; /* Slightly smaller than guide images */
+    object-fit: cover;
+    border-bottom: 1px solid #eee; /* Separator */
+}
+
+.hustle-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.hustle-card-content h3 {
+    font-size: 1.4rem;
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+}
+
+.hustle-details {
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.hustle-details p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.hustle-details p strong {
+    color: var(--primary-dark); /* Keep label dark */
+}
+
+.hustle-card .btn-small { /* Ensure button is at the bottom */
+     align-self: flex-start;
+}
+
+/* Responsive adjustments for hustle cards */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    .hustle-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+     .hustle-card-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Features Section Styles */
+.features {
+    padding: 4rem 0; /* Vertical padding, container handles horizontal */
+    background-color: #ffffff; /* White background for this section */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: var(--primary-dark);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.feature-item {
+    background-color: var(--primary-light); /* Light grey background for cards */
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    width: 60px; /* Adjust size as needed */
+    height: 60px;
+    margin-bottom: 1.5rem;
+    /* background-color: var(--accent-green); Simple placeholder styling if SVGs are basic */
+    /* border-radius: 50%; */
+    /* padding: 10px; */
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    color: var(--accent-green);
+    margin-bottom: 0.75rem;
+}
+
+.feature-item p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--primary-dark);
+}
+
+/* Responsive adjustments for features */
+@media (max-width: 768px) {
+    .features {
+        padding: 3rem 0;
+    }
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    .feature-item {
+        padding: 1.5rem;
+    }
+    .feature-item h3 {
+        font-size: 1.3rem;
+    }
+}
